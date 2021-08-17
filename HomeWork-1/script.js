@@ -50,7 +50,7 @@ const products = [
 
     arr.forEach((item) => {
 
-        const list = item.properties.map((item) => `<li>${item}</li>`).join("");
+        const list = item.properties.map((item) => `<li>${item}</li>`).join(" ");
 
 
         const blockItem = `<h1>${item.name}</h1> <h2>${item.brand}</h2> <ul>${list}>`
