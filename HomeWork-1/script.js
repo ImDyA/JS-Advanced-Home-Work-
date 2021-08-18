@@ -53,10 +53,10 @@ const products = [
         const list = item.properties.map((item) => `<li>${item}</li>`).join(" ");
 
 
-        const blockItem = `<h1>${item.name}</h1> <h2>${item.brand}</h2> <ul>${list}>`
-        allBlockItem.innerHTML = `<div>${blockItem}</div>`;
+        const blockItem = `<h1>${item.name}</h1> <h2>${item.brand}</h2> <ul>${list}</ul>`
+        allBlockItem.innerHTML += `<div>${blockItem}</div>`;
         
     });
-    console.log(allBlockItem)
+    document.body.innerHTML(allBlockItem)
   }
   infoBlock2(products)
