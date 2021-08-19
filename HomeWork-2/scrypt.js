@@ -44,7 +44,29 @@ const styleJS2 = (elem, text) => {
 }
 
 
-styleJS2(button, "test 2");
+// styleJS2(button, "test 2");
 
-console.log(document.querySelector("p").getBoundingClientRect());
-console.log(button.getBoundingClientRect());
+// console.log(document.querySelector("p").getBoundingClientRect());
+// console.log(button.getBoundingClientRect());
+
+
+
+const styleJS3 = (elem, text) => {
+    const invisibleElement = document.createElement("p");
+    invisibleElement.innerText = text;
+    invisibleElement.classList.add("invisible");
+    elem.before(invisibleElement);
+
+    const buttonElemCoords = elem.getBoundingClientRect();
+    const pElemCoords = invisibleElement.getBoundingClientRect();
+
+    const test = (buttonElemCoords.width - pElemCoords.width) / 2;
+
+    invisibleElement.style.left = buttonElemCoords.left + test + "px";
+    invisibleElement.style.top = buttonElemCoords.top - 30 + "px";
+
+    console.log(test);
+
+}
+
+styleJS3(button, "Test 3");
