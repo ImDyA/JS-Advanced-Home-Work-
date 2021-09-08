@@ -78,46 +78,94 @@ const formConfig = [
 //         inputElem.setAttribute("id", `${obj.name}`);
 //     }
 // }
-const finalFunction = (elem) => {
+// const finalFunction = (elem) => {
+//     const form = document.createElement("form");
+//     form.setAttribute("id", "form");
+//     allContainer.append(form);
+//     elem.forEach((object) => {
+//         if(object.element == "select"){
+//             const divElem = document.createElement("div");
+//             const selectElem = document.createElement("select");
+//             selectElem.setAttribute("name", `${object.name}`);
+//             selectElem.setAttribute("id", `${object.name}`);
+//             const labelElem = document.createElement("label");
+//             labelElem.setAttribute("for", `${object.name}`);
+//             labelElem.innerText = `${object.label}`;
+    
+//             const optionEl = object.options;
+//             optionEl.forEach((elem) => {
+//                 const optionEl = document.createElement("option");
+//                 optionEl.setAttribute("value", `${elem.value}`);
+//                 optionEl.innerText = `${elem.text}`;
+//                 selectElem.append(optionEl);
+//             })
+    
+    
+//             divElem.prepend(labelElem);
+//             divElem.append(selectElem);
+//             form.append(divElem);
+//         }
+//         if(object.element == "text"){
+//             const divElem = document.createElement("div");
+//             const labelElem = document.createElement("label");
+//             labelElem.setAttribute("for", `${object.name}`);
+//             labelElem.innerText = `${object.label}`
+//             const inputElem = document.createElement("input");
+//             inputElem.setAttribute("type", `${object.element}`);
+//             inputElem.setAttribute("name", `${object.name}`);
+//             inputElem.setAttribute("id", `${object.name}`);
+
+//             divElem.prepend(labelElem);
+//             divElem.append(inputElem);
+//             form.append(divElem);
+//         }
+//     })
+//     const button = document.createElement("button");
+//     button.setAttribute("type", "submit");
+//     button.innerText = "BUTTON"
+//     form.append(button);
+// }
+
+// finalFunction(formConfig);
+
+const createForm = (elem) => {
     const form = document.createElement("form");
     form.setAttribute("id", "form");
     allContainer.append(form);
     elem.forEach((object) => {
-        if(object.element == "select"){
-            const divElem = document.createElement("div");
-            const selectElem = document.createElement("select");
-            selectElem.setAttribute("name", `${object.name}`);
-            selectElem.setAttribute("id", `${object.name}`);
-            const labelElem = document.createElement("label");
-            labelElem.setAttribute("for", `${object.name}`);
-            labelElem.innerText = `${object.label}`;
-    
-            const optionEl = object.options;
-            optionEl.forEach((elem) => {
-                const optionEl = document.createElement("option");
-                optionEl.setAttribute("value", `${elem.value}`);
-                optionEl.innerText = `${elem.text}`;
-                selectElem.append(optionEl);
-            })
-    
-    
-            divElem.prepend(labelElem);
-            divElem.append(selectElem);
-            form.append(divElem);
-        }
-        if(object.element == "text"){
-            const divElem = document.createElement("div");
-            const labelElem = document.createElement("label");
-            labelElem.setAttribute("for", `${object.name}`);
-            labelElem.innerText = `${object.label}`
-            const inputElem = document.createElement("input");
-            inputElem.setAttribute("type", `${object.element}`);
-            inputElem.setAttribute("name", `${object.name}`);
-            inputElem.setAttribute("id", `${object.name}`);
-
-            divElem.prepend(labelElem);
-            divElem.append(inputElem);
-            form.append(divElem);
+        const divElem = document.createElement("div");
+        const labelElem = document.createElement("label");
+        const inputElem = document.createElement("input");
+        const selectElem = document.createElement("select");
+        switch(object.element){
+            case "text":
+                labelElem.setAttribute("for", `${object.name}`);
+                labelElem.innerText = `${object.label}`;
+                inputElem.setAttribute("type", `${object.element}`);
+                inputElem.setAttribute("name", `${object.name}`);
+                inputElem.setAttribute("id", `${object.name}`);
+                divElem.prepend(labelElem);
+                divElem.append(inputElem);
+                form.append(divElem);
+                break;
+            case "select":
+                selectElem.setAttribute("name", `${object.name}`);
+                selectElem.setAttribute("id", `${object.name}`);
+                labelElem.setAttribute("for", `${object.name}`);
+                labelElem.innerText = `${object.label}`;
+                const optionEl = object.options;
+                optionEl.forEach((elem) => {
+                    const optionEl = document.createElement("option");
+                    optionEl.setAttribute("value", `${elem.value}`);
+                    optionEl.innerText = `${elem.text}`;
+                    selectElem.append(optionEl);
+                })
+                divElem.prepend(labelElem);
+                divElem.append(selectElem);
+                form.append(divElem);
+                break;
+            default:
+                console.log("not work")
         }
     })
     const button = document.createElement("button");
@@ -126,7 +174,7 @@ const finalFunction = (elem) => {
     form.append(button);
 }
 
-finalFunction(formConfig);
+createForm(formConfig);
 
 const exampleForm = document.getElementById("form");
 const handleFormSubmit = (elem) => {
@@ -136,6 +184,7 @@ const handleFormSubmit = (elem) => {
     for(let target of formData){
         objectFormValues[target[0]] = target[1];
     }
+    console.log(objectFormValues)
 }
 
 exampleForm.addEventListener("submit", handleFormSubmit);
