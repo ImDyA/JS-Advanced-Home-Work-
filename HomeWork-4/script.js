@@ -137,6 +137,7 @@ const createForm = (elem) => {
         const labelElem = document.createElement("label");
         const inputElem = document.createElement("input");
         const selectElem = document.createElement("select");
+        // const test
         switch(object.element){
             case "text":
                 labelElem.setAttribute("for", `${object.name}`);
@@ -172,11 +173,12 @@ const createForm = (elem) => {
     button.setAttribute("type", "submit");
     button.innerText = "BUTTON"
     form.append(button);
+    return form;
 }
 
-createForm(formConfig);
+// createForm(formConfig);
 
-const exampleForm = document.getElementById("form");
+// const exampleForm = document.getElementById("form");
 const handleFormSubmit = (elem) => {
     elem.preventDefault();
     const formData = new FormData(elem.target);
@@ -186,7 +188,7 @@ const handleFormSubmit = (elem) => {
     }
     console.log(objectFormValues)
 }
+createForm(formConfig).addEventListener("submit", handleFormSubmit);
+// exampleForm.addEventListener("submit", handleFormSubmit);
 
-exampleForm.addEventListener("submit", handleFormSubmit);
-
-console.log(allContainer)
+// console.log(allContainer)
