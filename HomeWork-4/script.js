@@ -1,9 +1,4 @@
 const allContainer = document.getElementById("allContainer");
-// const test = document.createElement("p");
-// test.innerText = "hello";
-// allConteiner.append(test);
-
-// console.log(allConteiner)
 
 const formConfig = [
     {
@@ -149,20 +144,9 @@ const createForm = (elem) => {
         form.append(divElem);
         switch(object.element){
             case "text":
-                // labelElem.setAttribute("for", `${object.name}`);
-                // labelElem.innerText = `${object.label}`;
-                // inputElem.setAttribute("type", `${object.element}`);
-                // inputElem.setAttribute("name", `${object.name}`);
-                // inputElem.setAttribute("id", `${object.name}`);
-                // divElem.prepend(labelElem);
                 divElem.append(inputElem);
-                // form.append(divElem);
                 break;
             case "select":
-                // selectElem.setAttribute("name", `${object.name}`);
-                // selectElem.setAttribute("id", `${object.name}`);
-                // labelElem.setAttribute("for", `${object.name}`);
-                // labelElem.innerText = `${object.label}`;
                 const optionEl = object.options;
                 optionEl.forEach((elem) => {
                     const optionEl = document.createElement("option");
@@ -170,9 +154,7 @@ const createForm = (elem) => {
                     optionEl.innerText = `${elem.text}`;
                     selectElem.append(optionEl);
                 })
-                // divElem.prepend(labelElem);
                 divElem.append(selectElem);
-                // form.append(divElem);
                 break;
             default:
                 console.log("not work")
@@ -185,9 +167,6 @@ const createForm = (elem) => {
     return form;
 }
 
-// createForm(formConfig);
-
-// const exampleForm = document.getElementById("form");
 const handleFormSubmit = (elem) => {
     elem.preventDefault();
     const formData = new FormData(elem.target);
@@ -198,6 +177,3 @@ const handleFormSubmit = (elem) => {
     console.log(objectFormValues)
 }
 createForm(formConfig).addEventListener("submit", handleFormSubmit);
-// exampleForm.addEventListener("submit", handleFormSubmit);
-
-// console.log(allContainer)
