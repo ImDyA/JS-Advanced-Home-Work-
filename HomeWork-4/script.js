@@ -137,23 +137,32 @@ const createForm = (elem) => {
         const labelElem = document.createElement("label");
         const inputElem = document.createElement("input");
         const selectElem = document.createElement("select");
-        // const test
+
+        labelElem.setAttribute("for", `${object.name}`);
+        labelElem.innerText = `${object.label}`;
+        inputElem.setAttribute("type", `${object.element}`);
+        inputElem.setAttribute("name", `${object.name}`);
+        inputElem.setAttribute("id", `${object.name}`);
+        selectElem.setAttribute("name", `${object.name}`);
+        selectElem.setAttribute("id", `${object.name}`);
+        divElem.prepend(labelElem);
+        form.append(divElem);
         switch(object.element){
             case "text":
-                labelElem.setAttribute("for", `${object.name}`);
-                labelElem.innerText = `${object.label}`;
-                inputElem.setAttribute("type", `${object.element}`);
-                inputElem.setAttribute("name", `${object.name}`);
-                inputElem.setAttribute("id", `${object.name}`);
-                divElem.prepend(labelElem);
+                // labelElem.setAttribute("for", `${object.name}`);
+                // labelElem.innerText = `${object.label}`;
+                // inputElem.setAttribute("type", `${object.element}`);
+                // inputElem.setAttribute("name", `${object.name}`);
+                // inputElem.setAttribute("id", `${object.name}`);
+                // divElem.prepend(labelElem);
                 divElem.append(inputElem);
-                form.append(divElem);
+                // form.append(divElem);
                 break;
             case "select":
-                selectElem.setAttribute("name", `${object.name}`);
-                selectElem.setAttribute("id", `${object.name}`);
-                labelElem.setAttribute("for", `${object.name}`);
-                labelElem.innerText = `${object.label}`;
+                // selectElem.setAttribute("name", `${object.name}`);
+                // selectElem.setAttribute("id", `${object.name}`);
+                // labelElem.setAttribute("for", `${object.name}`);
+                // labelElem.innerText = `${object.label}`;
                 const optionEl = object.options;
                 optionEl.forEach((elem) => {
                     const optionEl = document.createElement("option");
@@ -161,9 +170,9 @@ const createForm = (elem) => {
                     optionEl.innerText = `${elem.text}`;
                     selectElem.append(optionEl);
                 })
-                divElem.prepend(labelElem);
+                // divElem.prepend(labelElem);
                 divElem.append(selectElem);
-                form.append(divElem);
+                // form.append(divElem);
                 break;
             default:
                 console.log("not work")
