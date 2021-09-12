@@ -4,21 +4,23 @@ const conteiner = document.getElementById("conteiner");
 firstVisit.innerText = "Дооро пожаловать!";
 lastVisit.innerText = "Вы заходили раз:";
 conteiner.append(firstVisit);
+conteiner.append(lastVisit);
 
 localStorage.setItem("firstVisit", 1);
 
 
 const allFunk = () => {
-    if(localStorage.getItem("firstVisit") == 1){
-        let test = Number(localStorage.getItem("firstVisit"));
-        test ++;
-        localStorage.setItem("lastVisit", test);
+    if(localStorage.length == 1){
+        let oneNumber = Number(localStorage.getItem("firstVisit"));
+        localStorage.setItem("lastVisit", oneNumber);
         localStorage.removeItem("firstVisit");
     }
-    if (localStorage.getItem("lastVisit") > 1) {
-        let test2 = Number(localStorage.getItem("lastVisit"));
-        test2 ++;
-        localStorage.setItem("lastVisit", test2);
+    if (localStorage.length >= 1) {
+        let twoNumber = Number(localStorage.getItem("lastVisit"));
+        lastVisit.innerText = `Вы заходили раз: ${twoNumber}`;
+        conteiner.append(lastVisit);
+        twoNumber ++;
+        localStorage.setItem("lastVisit", twoNumber);
     }
 }
 allFunk();
